@@ -2,9 +2,7 @@
 # Ex. N = 10 then 2 + 4 + 6 + 8 + 10 = 30
 
 
-
-
-num = int(input("Enter a positive integer N: "))
+num = int(input("Enter Number : "))
 even_sum = 0
 evens = []
 
