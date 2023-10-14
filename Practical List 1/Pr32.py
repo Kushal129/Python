@@ -43,19 +43,19 @@
 """
 # ------------------------------------------------------------------------
 
-# P - 3 
-str1 = input("Enter String: ")
-length = len(str1)
+# # P - 3 
+# str1 = input("Enter String: ")
+# length = len(str1)
 
-# Reverse 
-for i in range(length - 1, -1, -1):
-    if i % 2 == 0:
-        for j in range(i + 1):
-            print(str1[j], end=" ")
-    else:
-        for j in range(i, -1, -1):
-            print(str1[j], end=" ")
-    print()
+# # Reverse 
+# for i in range(length - 1, -1, -1):
+#     if i % 2 == 0:
+#         for j in range(i + 1):
+#             print(str1[j], end=" ")
+#     else:
+#         for j in range(i, -1, -1):
+#             print(str1[j], end=" ")
+#     print()
 
 
 # out put :- 
@@ -229,16 +229,16 @@ for i in range(length - 1, -1, -1):
 
 # P - 10
 
-# n = int(input("Enter a number: "))
+rows = 5
+cols = 5
 
-# for i in range(1, n + 1):
-#     for j in range(n, n - i, -1):
-#         print(j, end="")
-#     for j in range(j,0,-1): 
-#         print(n, end="")
-#     print()
-
-# out put :- 
+for i in range(rows,0,1):
+    for j in range(cols,0,-1):
+        if j == cols:
+            print(str(i),end="")
+        else:
+            print('5',end="")
+    print()
 
 """
     BAkIIII
