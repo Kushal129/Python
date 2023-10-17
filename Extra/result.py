@@ -2,14 +2,14 @@ import numpy as np
 import pandas as pd
 
 def percentage(df):
-               if(df['percentage']<40):
-                   return 'FF'
-               elif(df['percentage']>=40 and df['percentage']<50):
-                   return 'CC'
-               elif(df['percentage']>=50 and df['percentage']<60):
-                   return 'BB'
-               else:
-                   return 'AA'
+    if(df['percentage']<40):
+        return 'FF'
+    elif(df['percentage']>=40 and df['percentage']<50):
+        return 'CC'
+    elif(df['percentage']>=50 and df['percentage']<60):
+        return 'BB'
+    else:
+        return 'AA'
 
 
 df = pd.read_csv('result.csv')
