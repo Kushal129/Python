@@ -5,10 +5,11 @@
 # Write a Python program to print the numbers from the list after removing even
 # numbers from it.
 
-word_list = ['The', 'quick', 'brown', 'fox', 'jumps', 'over', 'the', 'lazy', 'dog']
+# my_list = "The quick brown fox jumps over the lazy dog".split()
+my_list = ['The', 'quick', 'brown', 'fox', 'jumps', 'over', 'the', 'lazy', 'dog']
 n = 3
 
-long_words = [word for word in word_list if len(word) > n]
+long_words = [word for word in my_list if len(word) > n]
 print("Words longer than", n, "characters:", long_words)
 
 number_list = [1, 2, 3, 4, 5, 6, 7, 8, 9]
