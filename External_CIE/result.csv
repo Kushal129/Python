@@ -1,0 +1,6 @@
+RollNumber,StudentName,NumberOfLecturePresent,TotalAbsent,AbsentPercentage,Eligibility
+1,John Doe,100,20,16.666666666666664,Allowed
+2,Jane Doe,110,10,8.333333333333332,Allowed
+3,Bob Smith,90,30,25.0,Not Allowed
+4,Alice Johnson,105,15,12.5,Allowed
+5,Charlie Brown,80,40,33.33333333333333,Not Allowed
