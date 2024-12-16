@@ -5,9 +5,6 @@ import random
 import webbrowser
 
 def speak(message):
-    """
-    Converts the given text message into speech.
-    """
     engine = pyttsx3.init()
     engine.setProperty('rate', 150)  # Adjust the speed of the voice
     engine.say(message)
