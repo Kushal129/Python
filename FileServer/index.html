@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Live File Explorer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div class="container mx-auto p-6">
+        <h1 class="text-4xl font-bold text-center text-blue-600 mb-8">Threat Folder File Explorer</h1>
+
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+            <ul id="file-list" class="space-y-4">
+                <!-- Files and folders will be dynamically listed here -->
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Prompt user for IP and Port if not available
+        let serverIP = prompt("Enter the server IP address (e.g., 192.168.1.100):", "192.168.110.?");
+        let serverPort = prompt("Enter the server port number:", "8000");
+
+        // If no input is provided, use default values
+        serverIP = serverIP || "0.0.0.0";
+        serverPort = serverPort || "8000";
+
+        // Construct the API URL dynamically based on the user's input
+        const apiUrl = `http://${serverIP}:${serverPort}/api/list`;
+
+        // Fetch the directory structure from the custom server endpoint
+        fetch(apiUrl)
+            .then(response => response.json())  // Parse the JSON response
+            .then(data => {
+                const fileList = document.getElementById('file-list');
+
+                data.forEach(item => {
+                    const li = document.createElement('li');
+                    li.classList.add('flex', 'justify-between', 'items-center', 'border-b', 'border-gray-200', 'py-3');
+
+                    const link = document.createElement('a');
+                    link.textContent = item.name;
+                    link.classList.add('text-blue-500', 'hover:underline', 'font-medium');
+
+                    if (item.type === 'file') {
+                        link.href = item.name;
+                        link.target = '_blank'; // Open files directly
+                        const downloadBtn = document.createElement('a');
+                        downloadBtn.href = item.name;
+                        downloadBtn.textContent = 'Download';
+                        downloadBtn.classList.add('bg-green-500', 'text-white', 'py-2', 'px-4', 'rounded-lg', 'text-sm', 'hover:bg-green-600');
+                        downloadBtn.download = item.name;
+
+                        li.appendChild(link);
+                        li.appendChild(downloadBtn);
+                    } else if (item.type === 'folder') {
+                        link.href = item.name + '/';
+                        link.target = '_self'; 
+                        link.classList.add('text-indigo-600', 'font-semibold', 'cursor-pointer', 'hover:bg-gray-200', 'p-2', 'rounded');
+                        li.appendChild(link);
+                    }
+
+                    fileList.appendChild(li);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching files:', error);
+            });
+    </script>
+
+</body>
+</html>
+
