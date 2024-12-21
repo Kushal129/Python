@@ -12,7 +12,8 @@ Steps to Use:
 2. Run Python HTTP Server:
    - On the server (where the files are located), navigate to the folder where you placed the files.
    - Open a terminal and run the following command:
-     python3 -m http.server 8000
+   ![Run Server Image](https://res.cloudinary.com/day0qlfda/image/upload/v1734793051/katrixqeabchjrrg5mxw.png)
+
    - This will start the server and expose the files in the folder over HTTP on port 8000.
 
 3. Access from Another PC:
