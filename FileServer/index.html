@@ -9,22 +9,58 @@
 <body class="bg-gray-100 text-gray-800">
 
     <div class="container mx-auto p-6">
-        <h1 class="text-4xl font-bold text-center text-blue-600 mb-8">Threat Folder File Explorer</h1>
+        <h1 class="text-4xl font-bold text-center text-blue-600 mb-8">Mini Live File Explorer</h1>
 
-        <div class="bg-white p-6 rounded-lg shadow-lg">
+        <!-- Help Button -->
+        <button id="help-button" class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">
+            Help
+        </button>
+
+        <div class="bg-white p-6 mt-4 rounded-lg shadow-lg">
             <ul id="file-list" class="space-y-4">
                 <!-- Files and folders will be dynamically listed here -->
             </ul>
         </div>
     </div>
 
+    <!-- Help Modal -->
+    <div id="help-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+        <div class="bg-white w-11/12 max-w-md rounded-lg shadow-lg p-6 relative">
+            <h2 class="text-2xl font-bold mb-4 text-gray-800">Helpful Commands</h2>
+            <p class="mb-2 text-gray-700"><strong>To zip a file:</strong> <code>zip -r filename.zip /path/to/directory</code></p>
+            <p class="mb-2 text-gray-700"><strong>To unzip a file:</strong> <code>unzip filename.zip</code></p>
+            <p class="mb-2 text-gray-700"><strong>To view directory contents:</strong> <code>ls</code></p>
+            <p class="mb-2 text-gray-700"><strong>To navigate to a directory:</strong> <code>cd /path/to/directory</code></p>
+            <button id="close-modal" class="absolute top-3 right-3 text-gray-600 hover:text-gray-800 text-xl">&times;</button>
+        </div>
+    </div>
+
     <script>
+        // Modal functionality
+        const helpButton = document.getElementById('help-button');
+        const helpModal = document.getElementById('help-modal');
+        const closeModal = document.getElementById('close-modal');
+
+        helpButton.addEventListener('click', () => {
+            helpModal.classList.remove('hidden');
+        });
+
+        closeModal.addEventListener('click', () => {
+            helpModal.classList.add('hidden');
+        });
+
+        helpModal.addEventListener('click', (e) => {
+            if (e.target === helpModal) {
+                helpModal.classList.add('hidden');
+            }
+        });
+
         // Prompt user for IP and Port if not available
-        let serverIP = prompt("Enter the server IP address (e.g., 192.168.1.100):", "192.168.110.?");
+        let serverIP = prompt("Enter the server IP address (e.g., 192.168.1.100):", "192.168.110.138");
         let serverPort = prompt("Enter the server port number:", "8000");
 
         // If no input is provided, use default values
-        serverIP = serverIP || "0.0.0.0";
+        serverIP = serverIP || "192.168.110.138";
         serverPort = serverPort || "8000";
 
         // Construct the API URL dynamically based on the user's input
@@ -57,7 +93,7 @@
                         li.appendChild(downloadBtn);
                     } else if (item.type === 'folder') {
                         link.href = item.name + '/';
-                        link.target = '_self'; 
+                        link.target = '_self';  // Navigate inside folders
                         link.classList.add('text-indigo-600', 'font-semibold', 'cursor-pointer', 'hover:bg-gray-200', 'p-2', 'rounded');
                         li.appendChild(link);
                     }
@@ -72,4 +108,3 @@
 
 </body>
 </html>
-
